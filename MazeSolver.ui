@@ -1,10 +1,11 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MazeSolverClass</class>
- <widget class="QMainWindow" name="MazeSolverClass" >
-  <property name="objectName" >
-   <string notr="true">MazeSolverClass</string>
+ <widget class="QMainWindow" name="MazeSolverClass">
+  <property name="enabled">
+   <bool>true</bool>
   </property>
-  <property name="geometry" >
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -12,17 +13,46 @@
     <height>400</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>MazeSolver</string>
-  </property>  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <property name="windowTitle">
+   <string>Maze Solver</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true">alternate-background-color: rgb(150, 150, 150);</string>
+   </property>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuStart">
+    <property name="title">
+     <string>Start</string>
+    </property>
+    <addaction name="actiondfs"/>
+   </widget>
+   <addaction name="menuStart"/>
+  </widget>
+  <action name="actiondfs">
+   <property name="text">
+    <string>dfs</string>
+   </property>
+  </action>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources>
-   <include location="MazeSolver.qrc"/>
+  <include location="MazeSolver.qrc"/>
  </resources>
  <connections/>
-</UI>
+</ui>
