@@ -1,12 +1,16 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
+#include "Utils.hpp"
 
 class GridBlock: public QRect
 {
 public:
-	GridBlock(int, int, int, int);
+	GridBlock(int, int, int, int, Utils::blockType);
 
-	int type;
+	static GridBlock createWallBlock(Utils::point, const int);
+	static GridBlock createPathBlock(Utils::point, const int);
+
+	Utils::blockType type;
 };
 

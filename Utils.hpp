@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QPainter>
 #include <vector>
 #include <map>
 #include <set>
@@ -7,10 +8,23 @@
 #include <chrono>
 #include <random>
 
+constexpr auto MENU_HEIGHT = 25;
+constexpr auto WINDOW_WIDTH = 500;
+constexpr auto WINDOW_HEIGHT = 500;
+constexpr auto DEFAULT_N = 25;
+constexpr auto BLOCK_COLOR = Qt::darkCyan;
+constexpr auto VISITED_BLOCK = Qt::cyan;
+
 class Utils 
 {
 public:
 	using point = std::pair<int, int>;
+
+	enum blockType
+	{
+		WALL,
+		PATH
+	};
 
 	enum direction
 	{

@@ -16,19 +16,10 @@ void SearchAlgo::initializeMaze(const int LEN)
 
 	for(int y = 0; y < LEN; ++y)
 		for (int x = 0; x < LEN; ++x)
-		{
 			if (maze->binaryGrid[y][x])
-				maze->grid.push_back(GridBlock(
-					x * dx,
-					y * dy + MENU_HEIGHT,
-					dx,
-					dy
-				));
-		}   
+				maze->grid.push_back(GridBlock::createWallBlock({ x, y }, LEN));
 
-	GridBlock start(dx + 1, dy + 1 + MENU_HEIGHT, dx - 2, dy - 2);
-	start.type = 2;
-	maze->grid.push_back(start);
+	maze->grid.push_back(GridBlock::createPathBlock({1, 1}, LEN));
 
 	visual->update();
 }
@@ -40,8 +31,8 @@ void SearchAlgo::showMaze()
 
 	for (auto &block : maze->grid)
 	{
-		pen.setColor(block.type == 1 ? BLOCK_COLOR : VISITED_BLOCK);
-		painter.setBrush(block.type == 1 ? BLOCK_COLOR : VISITED_BLOCK);
+		pen.setColor(block.type == Utils::WALL ? BLOCK_COLOR : VISITED_BLOCK);
+		painter.setBrush(block.type == Utils::WALL ? BLOCK_COLOR : VISITED_BLOCK);
 		painter.setPen(pen);
 
 		painter.drawRect(block);
