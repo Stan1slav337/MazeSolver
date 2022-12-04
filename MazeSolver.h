@@ -1,16 +1,8 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include <QPainter>
 #include "ui_MazeSolver.h"
 #include "SearchAlgo.h"
-
-constexpr auto MENU_HEIGHT = 25;
-constexpr auto WINDOW_WIDTH = 500;
-constexpr auto WINDOW_HEIGHT = 500;
-constexpr auto DEFAULT_N = 25;
-constexpr auto BLOCK_COLOR = Qt::darkCyan;
-constexpr auto VISITED_BLOCK = Qt::cyan;
 
 class MazeSolver : public QMainWindow
 {
@@ -18,6 +10,11 @@ class MazeSolver : public QMainWindow
 
 public:
     MazeSolver(QWidget* parent = nullptr);
+
+    static void delay() noexcept;
+
+private slots:
+    void on_actionDFS_triggered();
 
 private:
     virtual void paintEvent(QPaintEvent* event);
