@@ -3,18 +3,19 @@
 SearchAlgo::SearchAlgo(MazeSolver* solver)
 {
 	visual = solver;
-	maze = std::unique_ptr<Maze>(new Maze());
 
-	initializeMaze();
+	initializeMaze(DEFAULT_N);
 }
 
-void SearchAlgo::initializeMaze()
+void SearchAlgo::initializeMaze(const int LEN)
 {
-	auto dx = WINDOW_WIDTH / DEFAULT_N;
-	auto dy = WINDOW_HEIGHT / DEFAULT_N;
+	maze = std::make_unique<Maze>(LEN);
 
-	for(int y = 0; y < DEFAULT_N; ++y)
-		for (int x = 0; x < DEFAULT_N; ++x)
+	auto dx = WINDOW_WIDTH / LEN;
+	auto dy = WINDOW_HEIGHT / LEN;
+
+	for(int y = 0; y < LEN; ++y)
+		for (int x = 0; x < LEN; ++x)
 		{
 			if (maze->binaryGrid[y][x])
 				maze->grid.push_back(GridBlock(
@@ -25,7 +26,7 @@ void SearchAlgo::initializeMaze()
 				));
 		}   
 
-	GridBlock start(dx, dy + MENU_HEIGHT, dx, dy);
+	GridBlock start(dx + 1, dy + 1 + MENU_HEIGHT, dx - 2, dy - 2);
 	start.type = 2;
 	maze->grid.push_back(start);
 

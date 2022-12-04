@@ -1,8 +1,8 @@
 #pragma once
 
-#include <vector>
 #include "MazeSolver.h"
 #include "Maze.h"
+#include "Utils.hpp"
 
 class SearchAlgo 
 {
@@ -15,7 +15,7 @@ protected:
 	std::unique_ptr<class Maze> maze;
 		
 private:
-	void initializeMaze();
+	void initializeMaze(const int);
 	void showMaze();
 
 	friend class MazeSolver;
