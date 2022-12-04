@@ -33,20 +33,20 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuStart">
     <property name="title">
      <string>Start</string>
     </property>
-    <addaction name="actiondfs"/>
+    <addaction name="actionDFS"/>
    </widget>
    <addaction name="menuStart"/>
   </widget>
-  <action name="actiondfs">
+  <action name="actionDFS">
    <property name="text">
-    <string>dfs</string>
+    <string>Depth-first search</string>
    </property>
   </action>
  </widget>
