@@ -10,6 +10,7 @@ public:
 
 	static GridBlock createWallBlock(Utils::point, const int);
 	static GridBlock createPathBlock(Utils::point, const int);
+	static GridBlock createAnswBlock(Utils::point, const int);
 
 	Utils::blockType type;
 };

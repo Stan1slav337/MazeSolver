@@ -23,5 +23,11 @@ bool DFS::back(Utils::point cords)
 			found = found || back({ cordX + dirX, cordY + dirY });
 	}
 
+	if (found) 
+	{
+		maze->grid.push_back(GridBlock::createAnswBlock(cords, maze->N));
+		visual->update();
+	}
+
 	return found;
 }

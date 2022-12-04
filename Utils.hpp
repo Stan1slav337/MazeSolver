@@ -8,12 +8,13 @@
 #include <chrono>
 #include <random>
 
-constexpr auto MENU_HEIGHT = 25;
-constexpr auto WINDOW_WIDTH = 500;
+constexpr auto MENU_HEIGHT   = 25;
+constexpr auto WINDOW_WIDTH  = 500;
 constexpr auto WINDOW_HEIGHT = 500;
-constexpr auto DEFAULT_N = 25;
-constexpr auto BLOCK_COLOR = Qt::darkCyan;
+constexpr auto DEFAULT_N     = 50;
+constexpr auto BLOCK_COLOR   = Qt::darkCyan;
 constexpr auto VISITED_BLOCK = Qt::cyan;
+constexpr auto ANSWER_BLOCK  = Qt::green;
 
 class Utils 
 {
@@ -23,7 +24,8 @@ public:
 	enum blockType
 	{
 		WALL,
-		PATH
+		PATH,
+		ANSW
 	};
 
 	enum direction
@@ -43,6 +45,12 @@ public:
 		{RIGHT, { 1,   0}},
 		{UP,    { 0,  -1}},
 		{DOWN,  { 0,   1}}
+	};
+
+	const static inline std::map<blockType, const QColor> colors = {
+		{WALL, BLOCK_COLOR  },
+		{PATH, VISITED_BLOCK},
+		{ANSW, ANSWER_BLOCK }
 	};
 
 	static int getRandom(int l, int r) 

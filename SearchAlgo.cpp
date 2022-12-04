@@ -32,8 +32,8 @@ void SearchAlgo::showMaze()
 
 	for (auto &block : maze->grid)
 	{
-		pen.setColor(block.type == Utils::WALL ? BLOCK_COLOR : VISITED_BLOCK);
-		painter.setBrush(block.type == Utils::WALL ? BLOCK_COLOR : VISITED_BLOCK);
+		pen.setColor(Utils::colors.at(block.type));
+		painter.setBrush(Utils::colors.at(block.type));
 		painter.setPen(pen);
 
 		painter.drawRect(block);
