@@ -8,7 +8,7 @@
 constexpr auto MENU_HEIGHT = 25;
 constexpr auto WINDOW_WIDTH = 500;
 constexpr auto WINDOW_HEIGHT = 500;
-constexpr auto DEFAULT_N = 10;
+constexpr auto DEFAULT_N = 25;
 constexpr auto BLOCK_COLOR = Qt::darkCyan;
 constexpr auto VISITED_BLOCK = Qt::cyan;
 
@@ -20,8 +20,9 @@ public:
     MazeSolver(QWidget* parent = nullptr);
 
 private:
+    virtual void paintEvent(QPaintEvent* event);
+
     Ui::MazeSolverClass ui;
     class SearchAlgo* alg;
 
-    virtual void paintEvent(QPaintEvent* event);
 };
