@@ -1,10 +1,13 @@
 #include "Maze.h"
+#include <iostream>
 
 Maze::Maze(const int LEN)
 {
 	N = LEN;
 
+	start = { 1, 1 }; 
 	generateBinaryGrid();
+	end = findRandomEnd();
 }
 
 void Maze::generateBinaryGrid()
@@ -35,7 +38,7 @@ void Maze::generateBinaryGrid()
 			int nextX = cordX, nextY = cordY;
 			for (int i = 0; i < toMove; ++i)
 			{
-				if (binaryGrid[nextX + dirX][nextY + dirY] == 0)
+				if (binaryGrid[nextY + dirY][nextX + dirX] == 0)
 					break;
 
 				bool ok = true;
@@ -46,7 +49,7 @@ void Maze::generateBinaryGrid()
 					if (dirX == -nextDirX && dirY == -nextDirY)
 						continue;
 
-					if (binaryGrid[nextX + dirX + nextDirX][nextY + dirY + nextDirY] == 0)
+					if (binaryGrid[nextY + dirY + nextDirY][nextX + dirX + nextDirX] == 0)
 						ok = false;
 				}
 
@@ -54,7 +57,7 @@ void Maze::generateBinaryGrid()
 					break;
 
 				nextX += dirX, nextY += dirY;
-				binaryGrid[nextX][nextY] = 0;
+				binaryGrid[nextY][nextX] = 0;
 			}
 
 			if (nextX != cordX || nextY != cordY)
@@ -62,4 +65,32 @@ void Maze::generateBinaryGrid()
 		}
 	}
 
+}
+
+Utils::point Maze::findRandomEnd()
+{
+	do {
+		int randomX = Utils::getRandom(1, N - 2),
+			randomY = Utils::getRandom(1, N - 2);
+
+		if (binaryGrid[randomY][randomX] == 1)
+			continue;
+
+		int cnt = 0;
+
+		for (auto [dir, dirCords] : Utils::moves)
+		{
+			auto [dirX, dirY] = dirCords;
+			
+			if (binaryGrid[randomY + dirY][randomX + dirX] == 0)
+				cnt++;
+		}
+
+		if (cnt == 1)
+			return { randomX, randomY };
+
+
+	} while (true);
+
+	return Utils::point();
 }

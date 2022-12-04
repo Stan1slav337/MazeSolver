@@ -10,10 +10,14 @@ public:
 
 private:
 	friend class SearchAlgo;
+	friend class DFS;
 
 	void generateBinaryGrid();
+	Utils::point findRandomEnd();
 
 	int N;
 	std::vector<GridBlock> grid;
 	std::vector<std::vector<bool>> binaryGrid;
+
+	Utils::point start, end;
 };
