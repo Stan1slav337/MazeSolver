@@ -8,6 +8,8 @@ class Maze
 public:
 	Maze(const int);
 
+	int getLen() const;
+
 private:
 	friend class SearchAlgo;
 	friend class DFS;

@@ -21,7 +21,22 @@ void MazeSolver::paintEvent(QPaintEvent* event)
 
 void MazeSolver::on_actionGenerate_triggered()
 {
-    alg->initializeMaze(DEFAULT_N);
+    alg->initializeMaze(alg->maze->getLen());
+}
+
+void MazeSolver::on_action20_triggered()
+{
+    alg->initializeMaze(20);
+}
+
+void MazeSolver::on_action50_triggered()
+{
+    alg->initializeMaze(50);
+}
+
+void MazeSolver::on_action100_triggered()
+{
+    alg->initializeMaze(100);
 }
 
 void MazeSolver::on_actionDFS_triggered()

@@ -10,6 +10,11 @@ Maze::Maze(const int LEN)
 	end = findRandomEnd();
 }
 
+int Maze::getLen() const
+{
+	return N;
+}
+
 void Maze::generateBinaryGrid()
 {
 	binaryGrid.resize(N, std::vector<bool>(N, 1));
