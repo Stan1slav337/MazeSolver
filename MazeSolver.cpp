@@ -19,6 +19,11 @@ void MazeSolver::paintEvent(QPaintEvent* event)
     alg->showMaze();
 }
 
+void MazeSolver::on_actionGenerate_triggered()
+{
+    alg->initializeMaze(DEFAULT_N);
+}
+
 void MazeSolver::on_actionDFS_triggered()
 {
     menuBar()->setEnabled(false);

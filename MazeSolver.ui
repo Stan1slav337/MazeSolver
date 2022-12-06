@@ -40,10 +40,16 @@
     <property name="title">
      <string>Start</string>
     </property>
+    <addaction name="actionGenerate"/>
     <addaction name="actionDFS"/>
    </widget>
    <addaction name="menuStart"/>
   </widget>
+  <action name="actionGenerate">
+   <property name="text">
+    <string>Generate maze</string>
+   </property>
+  </action>
   <action name="actionDFS">
    <property name="text">
     <string>Depth-first search</string>

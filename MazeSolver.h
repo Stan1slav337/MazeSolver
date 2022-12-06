@@ -14,6 +14,7 @@ public:
     static void delay() noexcept;
 
 private slots:
+    void on_actionGenerate_triggered();
     void on_actionDFS_triggered();
 
 private:
