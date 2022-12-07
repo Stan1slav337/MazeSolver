@@ -21,6 +21,6 @@ private:
 	void showMaze();
 
 	friend class MazeSolver;
-	friend class DFS;
 	class MazeSolver* visual;
+	Utils::SleepSimulator sleep;
 };

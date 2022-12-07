@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QPainter>
+#include <qmutex.h>
+#include <qwaitcondition.h>
 #include <vector>
 #include <map>
 #include <set>
@@ -19,6 +21,27 @@ constexpr auto ANSWER_BLOCK  = Qt::green;
 class Utils 
 {
 public:
+	class SleepSimulator 
+	{
+	public:
+		SleepSimulator()
+		{
+			localMutex.lock();
+		}
+		void sleep(unsigned long sleepMS)
+		{
+			sleepSimulator.wait(&localMutex, sleepMS);
+		}
+		void CancelSleep()
+		{
+			sleepSimulator.wakeAll();
+		}
+
+	private:
+		QMutex localMutex;
+		QWaitCondition sleepSimulator;
+	};
+
 	using point = std::pair<int, int>;
 
 	enum blockType
@@ -51,6 +74,18 @@ public:
 		{WALL, BLOCK_COLOR  },
 		{PATH, VISITED_BLOCK},
 		{ANSW, ANSWER_BLOCK }
+	};
+
+	const static inline std::map<blockType, int> offsets = {
+		{WALL, 0},
+		{PATH, 1},
+		{ANSW, 1}
+	};
+
+	const static inline std::map<int, int> toSleep = {
+		{20, 25},
+		{50, 10},
+		{100, 0}
 	};
 
 	static int getRandom(int l, int r) 

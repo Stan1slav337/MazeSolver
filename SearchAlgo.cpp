@@ -10,6 +10,7 @@ SearchAlgo::SearchAlgo(MazeSolver* solver)
 void SearchAlgo::createBlock(Utils::point cords, Utils::blockType type)
 {
 	maze->addBlock(cords, type);
+	sleep.sleep(Utils::toSleep.at(maze->N));
 	visual->delay();
 	visual->update();
 }
