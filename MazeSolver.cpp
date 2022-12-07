@@ -19,6 +19,15 @@ void MazeSolver::paintEvent(QPaintEvent* event)
     alg->showMaze();
 }
 
+void MazeSolver::keyPressEvent(QKeyEvent* event)
+{
+    if (event->key() == Qt::Key_Right)
+        if (!isRunning)
+            alg->byStep = !alg->byStep;
+        else
+            update();
+}
+
 void MazeSolver::on_actionGenerate_triggered()
 {
     alg->initializeMaze(alg->maze->getLen());
@@ -43,12 +52,11 @@ void MazeSolver::on_actionDFS_triggered()
 {
     menuBar()->setEnabled(false);
     setWindowTitle("Depth-first search");
+    isRunning = true;
 
     auto searchAlg = static_cast<DFS*>(alg);
     searchAlg->search();
-
     update();
 
-    setWindowTitle("Depth-first search - Finished");
     menuBar()->setEnabled(true);
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
+#include <QKeyEvent>
 #include "ui_MazeSolver.h"
 #include "SearchAlgo.h"
 
@@ -12,6 +13,10 @@ public:
     MazeSolver(QWidget* parent = nullptr);
 
     static void delay() noexcept;
+    static bool inline isRunning;
+
+protected:
+    void keyPressEvent(QKeyEvent*) override;
 
 private slots:
     void on_actionGenerate_triggered();
@@ -26,5 +31,4 @@ private:
 
     Ui::MazeSolverClass ui;
     class SearchAlgo* alg;
-
 };

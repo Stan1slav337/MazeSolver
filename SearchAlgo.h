@@ -23,4 +23,7 @@ private:
 	friend class MazeSolver;
 	class MazeSolver* visual;
 	Utils::SleepSimulator sleep;
+
+	int toProcess;
+	bool byStep = false;
 };

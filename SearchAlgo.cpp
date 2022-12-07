@@ -10,9 +10,13 @@ SearchAlgo::SearchAlgo(MazeSolver* solver)
 void SearchAlgo::createBlock(Utils::point cords, Utils::blockType type)
 {
 	maze->addBlock(cords, type);
-	sleep.sleep(Utils::toSleep.at(maze->N));
-	visual->delay();
-	visual->update();
+
+	if (!byStep)
+	{
+		sleep.sleep(Utils::toSleep.at(maze->N));
+		visual->delay();
+		visual->update();
+	}
 }
 
 void SearchAlgo::initializeMaze(const int LEN)
@@ -30,6 +34,8 @@ void SearchAlgo::initializeMaze(const int LEN)
 	maze->addBlock(maze->start, Utils::PATH);
 	maze->addBlock(maze->end  , Utils::PATH);
 
+	toProcess = 2;
+
 	visual->update();
 }
 
@@ -38,12 +44,23 @@ void SearchAlgo::showMaze()
 	QPainter painter(visual);
 	QPen pen;
 
+	int proccesed = 0;
+
 	for (auto &block : maze->grid)
 	{
 		pen.setColor(Utils::colors.at(block.type));
 		painter.setBrush(Utils::colors.at(block.type));
 		painter.setPen(pen);
-
 		painter.drawRect(block);
+
+		if (block.type == Utils::PATH) 
+		{
+			if (byStep && MazeSolver::isRunning && proccesed == toProcess)
+			{
+				toProcess++;
+				break;
+			}
+			proccesed++;
+		}
 	}
 }
