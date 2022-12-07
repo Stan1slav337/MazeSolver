@@ -1,5 +1,4 @@
 #include "Maze.h"
-#include <iostream>
 
 Maze::Maze(const int LEN)
 {
@@ -13,6 +12,21 @@ Maze::Maze(const int LEN)
 int Maze::getLen() const
 {
 	return N;
+}
+
+void Maze::addBlock(Utils::point cords, Utils::blockType type)
+{
+	auto dx = WINDOW_WIDTH / N;
+	auto dy = WINDOW_HEIGHT / N;
+	auto [x, y] = cords;
+
+	grid.push_back(GridBlock(
+		x * dx + Utils::offsets.at(type),
+		y * dy + Utils::offsets.at(type) + MENU_HEIGHT,
+		dx - Utils::offsets.at(type),
+		dy - Utils::offsets.at(type),
+		type)
+	);
 }
 
 void Maze::generateBinaryGrid()

@@ -10,8 +10,7 @@ bool DFS::back(Utils::point cords)
 	auto [cordX, cordY] = cords;
 	maze->binaryGrid[cordY][cordX] = 1;
 
-	maze->grid.push_back(GridBlock::createPathBlock(cords, maze->N));
-	visual->update();
+	createBlock(cords, Utils::PATH);
 
 	bool found = cords == maze->end;
 
@@ -24,10 +23,7 @@ bool DFS::back(Utils::point cords)
 	}
 
 	if (found) 
-	{
-		maze->grid.push_back(GridBlock::createAnswBlock(cords, maze->N));
-		visual->update();
-	}
+		createBlock(cords, Utils::ANSW);
 
 	return found;
 }

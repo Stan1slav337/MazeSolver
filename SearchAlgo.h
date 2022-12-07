@@ -12,6 +12,8 @@ public:
 	~SearchAlgo() = default;
 
 protected:
+	void createBlock(Utils::point, Utils::blockType);
+
 	std::unique_ptr<class Maze> maze;
 		
 private:

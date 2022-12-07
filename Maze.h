@@ -9,6 +9,7 @@ public:
 	Maze(const int);
 
 	int getLen() const;
+	void addBlock(Utils::point, Utils::blockType);
 
 private:
 	friend class SearchAlgo;

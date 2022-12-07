@@ -8,10 +8,6 @@ class GridBlock: public QRect
 public:
 	GridBlock(int, int, int, int, Utils::blockType);
 
-	static GridBlock createWallBlock(Utils::point, const int);
-	static GridBlock createPathBlock(Utils::point, const int, bool = false);
-	static GridBlock createAnswBlock(Utils::point, const int);
-
 	Utils::blockType type;
 };
 

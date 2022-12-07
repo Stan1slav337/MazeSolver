@@ -7,6 +7,13 @@ SearchAlgo::SearchAlgo(MazeSolver* solver)
 	initializeMaze(DEFAULT_N);
 }
 
+void SearchAlgo::createBlock(Utils::point cords, Utils::blockType type)
+{
+	maze->addBlock(cords, type);
+	visual->delay();
+	visual->update();
+}
+
 void SearchAlgo::initializeMaze(const int LEN)
 {
 	maze = std::make_unique<Maze>(LEN);
@@ -14,13 +21,13 @@ void SearchAlgo::initializeMaze(const int LEN)
 	auto dx = WINDOW_WIDTH / LEN;
 	auto dy = WINDOW_HEIGHT / LEN;
 
-	for(int y = 0; y < LEN; ++y)
+	for (int y = 0; y < LEN; ++y)
 		for (int x = 0; x < LEN; ++x)
 			if (maze->binaryGrid[y][x])
-				maze->grid.push_back(GridBlock::createWallBlock({ x, y }, LEN));
+				maze->addBlock({ x, y }, Utils::WALL);
 
-	maze->grid.push_back(GridBlock::createPathBlock(maze->start, LEN, true));
-	maze->grid.push_back(GridBlock::createPathBlock(maze->end  , LEN, true));
+	maze->addBlock(maze->start, Utils::PATH);
+	maze->addBlock(maze->end  , Utils::PATH);
 
 	visual->update();
 }
