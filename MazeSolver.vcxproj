@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DFS.cpp" />
     <ClCompile Include="GridBlock.cpp" />
     <ClCompile Include="Maze.cpp" />
     <ClCompile Include="SearchAlgo.cpp" />
@@ -95,9 +96,11 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DFS.h" />
     <ClInclude Include="GridBlock.h" />
     <ClInclude Include="Maze.h" />
     <ClInclude Include="SearchAlgo.h" />
+    <ClInclude Include="Utils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
