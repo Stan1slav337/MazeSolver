@@ -25,8 +25,8 @@ void Maze::addBlock(Utils::point cords, Utils::blockType type)
 		y * dy + Utils::offsets.at(type) + MENU_HEIGHT,
 		dx - Utils::offsets.at(type),
 		dy - Utils::offsets.at(type),
-		type)
-	);
+		type
+	));
 }
 
 void Maze::generateBinaryGrid()
