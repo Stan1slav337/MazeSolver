@@ -19,8 +19,8 @@ void SearchAlgo::initializeMaze(const int LEN)
 			if (maze->binaryGrid[y][x])
 				maze->grid.push_back(GridBlock::createWallBlock({ x, y }, LEN));
 
-	maze->grid.push_back(GridBlock::createPathBlock(maze->start, LEN));
-	maze->grid.push_back(GridBlock::createPathBlock(maze->end  , LEN));
+	maze->grid.push_back(GridBlock::createPathBlock(maze->start, LEN, true));
+	maze->grid.push_back(GridBlock::createPathBlock(maze->end  , LEN, true));
 
 	visual->update();
 }
