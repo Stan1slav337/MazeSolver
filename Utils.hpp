@@ -13,7 +13,7 @@
 constexpr auto MENU_HEIGHT   = 25;
 constexpr auto WINDOW_WIDTH  = 500;
 constexpr auto WINDOW_HEIGHT = 500;
-constexpr auto DEFAULT_N     = 50;
+constexpr auto DEFAULT_N     = 20;
 constexpr auto BLOCK_COLOR   = Qt::darkCyan;
 constexpr auto VISITED_BLOCK = Qt::cyan;
 constexpr auto ANSWER_BLOCK  = Qt::green;
@@ -84,7 +84,7 @@ public:
 
 	const static inline std::map<int, int> toSleep = {
 		{20, 25},
-		{50, 10},
+		{50, 15},
 		{100, 0}
 	};
 
