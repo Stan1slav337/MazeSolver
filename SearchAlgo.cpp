@@ -5,6 +5,7 @@ SearchAlgo::SearchAlgo(MazeSolver* solver)
 	visual = solver;
 
 	initializeMaze(DEFAULT_N);
+	root = makeTree(Utils::point {1, 1}, nullptr);
 }
 
 void SearchAlgo::createBlock(Utils::point cords, Utils::blockType type)
@@ -19,12 +20,14 @@ void SearchAlgo::createBlock(Utils::point cords, Utils::blockType type)
 	}
 }
 
+std::shared_ptr<TreeNode> SearchAlgo::getRoot()
+{
+	return root;
+}
+
 void SearchAlgo::initializeMaze(const int LEN)
 {
 	maze = std::make_unique<Maze>(LEN);
-
-	auto dx = WINDOW_WIDTH / LEN;
-	auto dy = WINDOW_HEIGHT / LEN;
 
 	for (int y = 0; y < LEN; ++y)
 		for (int x = 0; x < LEN; ++x)
@@ -37,6 +40,27 @@ void SearchAlgo::initializeMaze(const int LEN)
 	toProcess = 2;
 
 	visual->update();
+}
+
+std::shared_ptr<TreeNode> SearchAlgo::makeTree(Utils::point cords, std::shared_ptr<TreeNode> parent)
+{
+	auto [cordX, cordY] = cords;
+	auto node = std::make_shared<TreeNode>(cords);
+
+	for (auto [dir, dirCords] : Utils::moves)
+	{
+		auto [dirX, dirY] = dirCords;
+
+		if (maze->binaryGrid[cordY + dirY][cordX + dirX] == 0)
+		{
+			auto childCords = Utils::point{ cordX + dirX, cordY + dirY };
+
+			if (parent == nullptr || childCords != parent->getCords())
+				node->addChild(makeTree(childCords, node));
+		}
+	}
+
+	return node;
 }
 
 void SearchAlgo::showMaze()	
