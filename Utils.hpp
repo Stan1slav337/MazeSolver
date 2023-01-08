@@ -21,27 +21,6 @@ constexpr auto ANSWER_BLOCK  = Qt::green;
 class Utils 
 {
 public:
-	class SleepSimulator 
-	{
-	public:
-		SleepSimulator()
-		{
-			localMutex.lock();
-		}
-		void sleep(unsigned long sleepMS)
-		{
-			sleepSimulator.wait(&localMutex, sleepMS);
-		}
-		void CancelSleep()
-		{
-			sleepSimulator.wakeAll();
-		}
-
-	private:
-		QMutex localMutex;
-		QWaitCondition sleepSimulator;
-	};
-
 	using point = std::pair<int, int>;
 
 	enum blockType
