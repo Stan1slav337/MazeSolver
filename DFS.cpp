@@ -1,29 +1,22 @@
 #include "DFS.h"
 
-void DFS::search()
+void DFS::init()
 {
-	back(maze->start);
+	stiva.push(getRoot());
 }
 
-bool DFS::back(Utils::point cords)
+void DFS::search()
 {
-	auto [cordX, cordY] = cords;
-	maze->binaryGrid[cordY][cordX] = 1;
-
-	createBlock(cords, Utils::PATH);
-
-	bool found = cords == maze->end;
-
-	for (auto [dir, dirCords] : Utils::moves)
+	if (isFinal(stiva.top()))
 	{
-		auto [dirX, dirY] = dirCords;
-
-		if (maze->binaryGrid[cordY + dirY][cordX + dirX] == 0)
-			found = found || back({ cordX + dirX, cordY + dirY });
+		createAnswer(stiva.top());
+		return;
 	}
 
-	if (found) 
-		createBlock(cords, Utils::ANSW);
+	auto currNode = stiva.top();
+	stiva.pop();
+	createBlock(currNode, Utils::PATH);
 
-	return found;
+	for (auto childNode : currNode->getChildren())
+		stiva.push(childNode);
 }

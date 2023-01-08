@@ -13,7 +13,6 @@ public:
 
 private:
 	friend class SearchAlgo;
-	friend class DFS;
 
 	void generateBinaryGrid();
 	Utils::point findRandomEnd();
