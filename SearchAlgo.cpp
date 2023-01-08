@@ -5,24 +5,32 @@ SearchAlgo::SearchAlgo(MazeSolver* solver)
 	visual = solver;
 
 	initializeMaze(DEFAULT_N);
-	root = makeTree(Utils::point {1, 1}, nullptr);
 }
 
-void SearchAlgo::createBlock(Utils::point cords, Utils::blockType type)
+void SearchAlgo::createBlock(std::shared_ptr<TreeNode> node, Utils::blockType type)
 {
+	auto cords = node->getCords();
 	maze->addBlock(cords, type);
+	visual->update();
+}
 
-	if (!byStep)
+void SearchAlgo::createAnswer(std::shared_ptr<TreeNode> node)
+{
+	while (node != nullptr)
 	{
-		sleep.sleep(Utils::toSleep.at(maze->N));
-		visual->delay();
-		visual->update();
+		createBlock(node, Utils::ANSW);
+		node = node->getParent();
 	}
 }
 
 std::shared_ptr<TreeNode> SearchAlgo::getRoot()
 {
 	return root;
+}
+
+bool SearchAlgo::isFinal(std::shared_ptr<TreeNode> node)
+{
+	return maze->end == node->getCords();
 }
 
 void SearchAlgo::initializeMaze(const int LEN)
@@ -34,18 +42,21 @@ void SearchAlgo::initializeMaze(const int LEN)
 			if (maze->binaryGrid[y][x])
 				maze->addBlock({ x, y }, Utils::WALL);
 
-	maze->addBlock(maze->start, Utils::PATH);
 	maze->addBlock(maze->end  , Utils::PATH);
 
-	toProcess = 2;
-
 	visual->update();
+	updateTree();
+}
+
+void SearchAlgo::updateTree()
+{
+	root = makeTree(Utils::point{ 1, 1 }, nullptr);
 }
 
 std::shared_ptr<TreeNode> SearchAlgo::makeTree(Utils::point cords, std::shared_ptr<TreeNode> parent)
 {
 	auto [cordX, cordY] = cords;
-	auto node = std::make_shared<TreeNode>(cords);
+	auto node = std::make_shared<TreeNode>(cords, parent);
 
 	for (auto [dir, dirCords] : Utils::moves)
 	{
@@ -68,23 +79,11 @@ void SearchAlgo::showMaze()
 	QPainter painter(visual);
 	QPen pen;
 
-	int proccesed = 0;
-
 	for (auto &block : maze->grid)
 	{
 		pen.setColor(Utils::colors.at(block.type));
 		painter.setBrush(Utils::colors.at(block.type));
 		painter.setPen(pen);
 		painter.drawRect(block);
-
-		if (block.type == Utils::PATH) 
-		{
-			if (byStep && MazeSolver::isRunning && proccesed == toProcess)
-			{
-				toProcess++;
-				break;
-			}
-			proccesed++;
-		}
 	}
 }

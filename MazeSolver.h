@@ -31,4 +31,5 @@ private:
 
     Ui::MazeSolverClass ui;
     class SearchAlgo* alg;
+    class SearchAlgo* dfs;
 };
