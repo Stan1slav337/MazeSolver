@@ -10,7 +10,12 @@ std::vector<std::shared_ptr<TreeNode>> TreeNode::getChildren() const
 	return children;
 }
 
-Utils::point TreeNode::getCords()
+std::shared_ptr<TreeNode> TreeNode::getParent() const
+{
+	return parent;
+}
+
+Utils::point TreeNode::getCords() const
 {
 	return cords;
 }
