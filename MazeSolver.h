@@ -12,8 +12,8 @@ class MazeSolver : public QMainWindow
 public:
     MazeSolver(QWidget* parent = nullptr);
 
-    static void delay() noexcept;
     static bool inline isRunning;
+    void init(const int);
 
 protected:
     void keyPressEvent(QKeyEvent*) override;

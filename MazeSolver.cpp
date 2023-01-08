@@ -8,6 +8,15 @@ MazeSolver::MazeSolver(QWidget *parent): QMainWindow(parent)
 
     dfs = new DFS(this);
     alg = dfs;
+    init(DEFAULT_N);
+}
+
+void MazeSolver::init(const int LEN)
+{
+    alg->initializeMaze(LEN);
+    alg->updateTree();
+    alg->init();
+    update();
 }
 
 void MazeSolver::paintEvent(QPaintEvent* event)
@@ -26,29 +35,26 @@ void MazeSolver::keyPressEvent(QKeyEvent* event)
 
 void MazeSolver::on_actionGenerate_triggered()
 {
-    alg->initializeMaze(alg->maze->getLen());
+    init(alg->maze->getLen());
 }
 
 void MazeSolver::on_action20_triggered()
 {
-    alg->initializeMaze(20);
+    init(20);
 }
 
 void MazeSolver::on_action50_triggered()
 {
-    alg->initializeMaze(50);
+    init(50);
 }
 
 void MazeSolver::on_action100_triggered()
 {
-    alg->initializeMaze(100);
+    init(100);
 }
 
 void MazeSolver::on_actionDFS_triggered()
 {
-    menuBar()->setEnabled(false);
     setWindowTitle("Depth-first search");
-    alg->init();
-
-    menuBar()->setEnabled(true);
+    alg = dfs;
 }

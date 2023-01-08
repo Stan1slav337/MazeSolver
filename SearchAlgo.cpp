@@ -3,8 +3,6 @@
 SearchAlgo::SearchAlgo(MazeSolver* solver)
 {
 	visual = solver;
-
-	initializeMaze(DEFAULT_N);
 }
 
 void SearchAlgo::createBlock(std::shared_ptr<TreeNode> node, Utils::blockType type)
@@ -43,9 +41,6 @@ void SearchAlgo::initializeMaze(const int LEN)
 				maze->addBlock({ x, y }, Utils::WALL);
 
 	maze->addBlock(maze->end  , Utils::PATH);
-
-	visual->update();
-	updateTree();
 }
 
 void SearchAlgo::updateTree()

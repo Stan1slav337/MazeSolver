@@ -2,6 +2,7 @@
 
 void DFS::init()
 {
+	stiva = {};
 	stiva.push(getRoot());
 }
 

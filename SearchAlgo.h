@@ -7,9 +7,7 @@
 class SearchAlgo 
 {
 public:
-	SearchAlgo() = default;
 	SearchAlgo(class MazeSolver*);
-	~SearchAlgo() = default;
 
 protected:
 	virtual void init() = 0;
