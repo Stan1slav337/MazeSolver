@@ -2,22 +2,22 @@
 
 void DFS::init()
 {
-	stiva = {};
-	stiva.push(getRoot());
+	stack = {};
+	stack.push(getRoot());
 }
 
 void DFS::search()
 {
-	if (isFinal(stiva.top()))
+	auto currNode = stack.top();
+	stack.pop();
+	createBlock(currNode, Utils::PATH);
+
+	if (isFinal(currNode))
 	{
-		createAnswer(stiva.top());
+		createAnswer(currNode);
 		return;
 	}
 
-	auto currNode = stiva.top();
-	stiva.pop();
-	createBlock(currNode, Utils::PATH);
-
 	for (auto childNode : currNode->getChildren())
-		stiva.push(childNode);
+		stack.push(childNode);
 }

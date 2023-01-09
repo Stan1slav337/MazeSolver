@@ -12,6 +12,6 @@ public:
 	void search();
 
 private:
-	std::stack<std::shared_ptr<TreeNode>> stiva;
+	std::stack<std::shared_ptr<TreeNode>> stack;
 };
 
