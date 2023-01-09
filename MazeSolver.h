@@ -11,8 +11,6 @@ class MazeSolver : public QMainWindow
 
 public:
     MazeSolver(QWidget* parent = nullptr);
-
-    static bool inline isRunning;
     void init(const int);
 
 protected:
@@ -21,6 +19,7 @@ protected:
 private slots:
     void on_actionGenerate_triggered();
     void on_actionDFS_triggered();
+    void on_actionBFS_triggered();
 
     void on_action20_triggered();
     void on_action50_triggered();
@@ -31,5 +30,6 @@ private:
 
     Ui::MazeSolverClass ui;
     class SearchAlgo* alg;
-    class SearchAlgo* dfs;
+    class SearchAlgo *dfs, *bfs;
+    int currLEN;
 };

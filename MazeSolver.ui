@@ -42,6 +42,7 @@
     </property>
     <addaction name="actionGenerate"/>
     <addaction name="actionDFS"/>
+    <addaction name="actionBFS"/>
    </widget>
    <widget class="QMenu" name="menuMaze">
     <property name="title">
@@ -61,7 +62,7 @@
   </action>
   <action name="actionDFS">
    <property name="text">
-    <string>Depth-first search</string>
+    <string>Depth First Search</string>
    </property>
   </action>
   <action name="action20">
@@ -77,6 +78,11 @@
   <action name="action100">
    <property name="text">
     <string>100 x 100</string>
+   </property>
+  </action>
+  <action name="actionBFS">
+   <property name="text">
+    <string>Breadth First Search</string>
    </property>
   </action>
  </widget>

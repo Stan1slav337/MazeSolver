@@ -1,5 +1,6 @@
 #include "MazeSolver.h"
 #include "DFS.h"
+#include "BFS.h"
 
 MazeSolver::MazeSolver(QWidget *parent): QMainWindow(parent)
 {
@@ -7,12 +8,14 @@ MazeSolver::MazeSolver(QWidget *parent): QMainWindow(parent)
     ui.setupUi(this);
 
     dfs = new DFS(this);
+    bfs = new BFS(this);
     alg = dfs;
     init(DEFAULT_N);
 }
 
 void MazeSolver::init(const int LEN)
 {
+    currLEN = LEN;
     alg->initializeMaze(LEN);
     alg->updateTree();
     alg->init();
@@ -55,6 +58,14 @@ void MazeSolver::on_action100_triggered()
 
 void MazeSolver::on_actionDFS_triggered()
 {
-    setWindowTitle("Depth-first search");
+    setWindowTitle("Depth First Search");
     alg = dfs;
+    init(currLEN);
+}
+
+void MazeSolver::on_actionBFS_triggered()
+{
+    setWindowTitle("Breadth First Search");
+    alg = bfs;
+    init(currLEN);
 }
