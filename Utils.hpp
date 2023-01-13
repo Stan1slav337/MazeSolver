@@ -11,8 +11,7 @@
 #include <random>
 
 constexpr auto MENU_HEIGHT   = 25;
-constexpr auto WINDOW_WIDTH  = 500;
-constexpr auto WINDOW_HEIGHT = 500;
+constexpr auto DELTA			 = 42;
 constexpr auto DEFAULT_N     = 20;
 constexpr auto BLOCK_COLOR   = Qt::darkCyan;
 constexpr auto VISITED_BLOCK = Qt::cyan;
