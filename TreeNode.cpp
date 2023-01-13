@@ -1,5 +1,7 @@
 #include "TreeNode.h"
 
+int TreeNode::nrNodes = 0;
+
 void TreeNode::addChild(std::shared_ptr<TreeNode> child)
 {
 	children.push_back(child);
@@ -18,4 +20,9 @@ std::shared_ptr<TreeNode> TreeNode::getParent() const
 Utils::point TreeNode::getCords() const
 {
 	return cords;
+}
+
+int TreeNode::getVal() const
+{
+	return val;
 }

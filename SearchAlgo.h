@@ -24,9 +24,13 @@ private:
 	void initializeMaze(const int);
 	void updateTree();
 	std::shared_ptr<TreeNode> makeTree(Utils::point, std::shared_ptr<TreeNode>);
+	void showTree(std::shared_ptr<TreeNode>);
 	void showMaze();
 
 	friend class MazeSolver;
 	class MazeSolver* visual;
 	std::shared_ptr<TreeNode> root;
+
+	QPainter painter;
+	QPen pen;
 };
