@@ -48,9 +48,9 @@
     <property name="title">
      <string>Maze</string>
     </property>
+    <addaction name="action10"/>
+    <addaction name="action15"/>
     <addaction name="action20"/>
-    <addaction name="action50"/>
-    <addaction name="action100"/>
    </widget>
    <addaction name="menuStart"/>
    <addaction name="menuMaze"/>
@@ -65,19 +65,19 @@
     <string>Depth First Search</string>
    </property>
   </action>
+  <action name="action10">
+   <property name="text">
+    <string>10 x 10</string>
+   </property>
+  </action>
+  <action name="action15">
+   <property name="text">
+    <string>15 x 15</string>
+   </property>
+  </action>
   <action name="action20">
    <property name="text">
     <string>20 x 20</string>
-   </property>
-  </action>
-  <action name="action50">
-   <property name="text">
-    <string>50 x 50</string>
-   </property>
-  </action>
-  <action name="action100">
-   <property name="text">
-    <string>100 x 100</string>
    </property>
   </action>
   <action name="actionBFS">

@@ -16,8 +16,8 @@ int Maze::getLen() const
 
 void Maze::addBlock(Utils::point cords, Utils::blockType type)
 {
-	auto dx = WINDOW_WIDTH / N;
-	auto dy = WINDOW_HEIGHT / N;
+	auto dx = DELTA;
+	auto dy = DELTA;
 	auto [x, y] = cords;
 
 	grid.push_back(GridBlock(

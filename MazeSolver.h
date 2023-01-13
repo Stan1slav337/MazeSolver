@@ -21,9 +21,9 @@ private slots:
     void on_actionDFS_triggered();
     void on_actionBFS_triggered();
 
+    void on_action10_triggered();
+    void on_action15_triggered();
     void on_action20_triggered();
-    void on_action50_triggered();
-    void on_action100_triggered();
 
 private:
     virtual void paintEvent(QPaintEvent* event);

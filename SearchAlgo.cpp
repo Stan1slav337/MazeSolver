@@ -45,7 +45,7 @@ void SearchAlgo::initializeMaze(const int LEN)
 
 void SearchAlgo::updateTree()
 {
-	TreeNode::nrNodes++;
+	TreeNode::nrNodes = 1;
 	root = makeTree(Utils::point{ 1, 1 }, nullptr);
 }
 
@@ -76,8 +76,8 @@ void SearchAlgo::showTree(std::shared_ptr<TreeNode> node)
 	pen.setColor(Qt::black);
 	painter.setPen(pen);
 
-	auto dx = WINDOW_WIDTH / maze->N;
-	auto dy = WINDOW_HEIGHT / maze->N;
+	auto dx = DELTA;
+	auto dy = DELTA;
 	auto rx = 0.75 * dx / 2;
 	auto ry = 0.75 * dy / 2;
 	auto [x, y] = node->getCords();

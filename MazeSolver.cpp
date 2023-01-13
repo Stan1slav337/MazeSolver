@@ -4,7 +4,6 @@
 
 MazeSolver::MazeSolver(QWidget *parent): QMainWindow(parent)
 {
-    setFixedSize(QSize(WINDOW_WIDTH, WINDOW_HEIGHT + MENU_HEIGHT));
     ui.setupUi(this);
 
     dfs = new DFS(this);
@@ -16,6 +15,7 @@ MazeSolver::MazeSolver(QWidget *parent): QMainWindow(parent)
 void MazeSolver::init(const int LEN)
 {
     currLEN = LEN;
+    setFixedSize(QSize(DELTA * LEN, DELTA * LEN + MENU_HEIGHT));
     alg->initializeMaze(LEN);
     alg->updateTree();
     alg->init();
@@ -41,19 +41,19 @@ void MazeSolver::on_actionGenerate_triggered()
     init(alg->maze->getLen());
 }
 
+void MazeSolver::on_action10_triggered()
+{
+    init(10);
+}
+
+void MazeSolver::on_action15_triggered()
+{
+    init(15);
+}
+
 void MazeSolver::on_action20_triggered()
 {
     init(20);
-}
-
-void MazeSolver::on_action50_triggered()
-{
-    init(50);
-}
-
-void MazeSolver::on_action100_triggered()
-{
-    init(100);
 }
 
 void MazeSolver::on_actionDFS_triggered()

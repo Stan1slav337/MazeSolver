@@ -12,7 +12,7 @@
 
 constexpr auto MENU_HEIGHT   = 25;
 constexpr auto DELTA			 = 42;
-constexpr auto DEFAULT_N     = 20;
+constexpr auto DEFAULT_N     = 15;
 constexpr auto BLOCK_COLOR   = Qt::darkCyan;
 constexpr auto VISITED_BLOCK = Qt::cyan;
 constexpr auto ANSWER_BLOCK  = Qt::green;
