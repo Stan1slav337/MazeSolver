@@ -13,7 +13,8 @@ class MazeSolver : public QMainWindow
 public:
     MazeSolver(QWidget* parent = nullptr);
     void init(const int);
-    Ui::MazeSolverClass getUi() const;
+    void setShowConsole(bool);
+    bool getShowTree() const;
 
 protected:
     void keyPressEvent(QKeyEvent*) override;

@@ -116,6 +116,6 @@ void SearchAlgo::showMaze()
 
 	painter.end();
 
-	if(visual->getUi().actionShow_Tree->isChecked())
+	if(visual->getShowTree())
 		showTree(root);
 }

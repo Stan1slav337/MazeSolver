@@ -22,9 +22,14 @@ void MazeSolver::init(const int LEN)
     update();
 }
 
-Ui::MazeSolverClass MazeSolver::getUi() const
+void MazeSolver::setShowConsole(bool toShow)
 {
-    return ui;
+    ui.actionShow_Details->setChecked(toShow);
+}
+
+bool MazeSolver::getShowTree() const
+{
+    return ui.actionShow_Tree->isChecked();
 }
 
 void MazeSolver::closeEvent(QCloseEvent* bar)

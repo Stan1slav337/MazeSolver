@@ -9,6 +9,6 @@ Console::Console(class MazeSolver *solver, QWidget *parent): main(solver), QWidg
 
 void Console::closeEvent(QCloseEvent* bar)
 {
-	main->getUi().actionShow_Details->setChecked(false);
+	main->setShowConsole(false);
 	bar->accept();
 }
