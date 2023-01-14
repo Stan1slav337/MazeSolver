@@ -46,14 +46,22 @@
    </widget>
    <widget class="QMenu" name="menuMaze">
     <property name="title">
-     <string>Maze</string>
+     <string>Grid Size</string>
     </property>
     <addaction name="action10"/>
     <addaction name="action15"/>
     <addaction name="action20"/>
    </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionShow_Tree"/>
+    <addaction name="actionShow_Details"/>
+   </widget>
    <addaction name="menuStart"/>
    <addaction name="menuMaze"/>
+   <addaction name="menuOptions"/>
   </widget>
   <action name="actionGenerate">
    <property name="text">
@@ -83,6 +91,22 @@
   <action name="actionBFS">
    <property name="text">
     <string>Breadth First Search</string>
+   </property>
+  </action>
+  <action name="actionShow_Tree">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Tree</string>
+   </property>
+  </action>
+  <action name="actionShow_Details">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Details</string>
    </property>
   </action>
  </widget>

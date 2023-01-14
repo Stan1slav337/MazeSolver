@@ -86,12 +86,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BFS.cpp" />
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="DFS.cpp" />
     <ClCompile Include="GridBlock.cpp" />
     <ClCompile Include="Maze.cpp" />
     <ClCompile Include="SearchAlgo.cpp" />
     <ClCompile Include="TreeNode.cpp" />
     <QtRcc Include="MazeSolver.qrc" />
+    <QtUic Include="Console.ui" />
     <QtUic Include="MazeSolver.ui" />
     <QtMoc Include="MazeSolver.h" />
     <ClCompile Include="MazeSolver.cpp" />
@@ -99,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BFS.h" />
+    <QtMoc Include="Console.h" />
     <ClInclude Include="DFS.h" />
     <ClInclude Include="GridBlock.h" />
     <ClInclude Include="Maze.h" />

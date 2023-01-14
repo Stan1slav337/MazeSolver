@@ -22,6 +22,18 @@ void MazeSolver::init(const int LEN)
     update();
 }
 
+Ui::MazeSolverClass MazeSolver::getUi() const
+{
+    return ui;
+}
+
+void MazeSolver::closeEvent(QCloseEvent* bar)
+{
+    if (nullptr != console)
+        console->close();
+    bar->accept();
+}
+
 void MazeSolver::paintEvent(QPaintEvent* event)
 {
     alg->showMaze();
@@ -54,6 +66,24 @@ void MazeSolver::on_action15_triggered()
 void MazeSolver::on_action20_triggered()
 {
     init(20);
+}
+
+void MazeSolver::on_actionShow_Tree_triggered()
+{
+    update();
+}
+
+void MazeSolver::on_actionShow_Details_triggered()
+{
+
+    if (ui.actionShow_Details->isChecked())
+    {
+        if(nullptr == console)
+            console = new Console(this);
+        console->show();
+    }
+    else
+        console->hide();
 }
 
 void MazeSolver::on_actionDFS_triggered()

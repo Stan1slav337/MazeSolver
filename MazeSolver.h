@@ -3,6 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QKeyEvent>
 #include "ui_MazeSolver.h"
+#include "Console.h"
 #include "SearchAlgo.h"
 
 class MazeSolver : public QMainWindow
@@ -12,6 +13,7 @@ class MazeSolver : public QMainWindow
 public:
     MazeSolver(QWidget* parent = nullptr);
     void init(const int);
+    Ui::MazeSolverClass getUi() const;
 
 protected:
     void keyPressEvent(QKeyEvent*) override;
@@ -25,11 +27,17 @@ private slots:
     void on_action15_triggered();
     void on_action20_triggered();
 
+    void on_actionShow_Tree_triggered();
+    void on_actionShow_Details_triggered();
+
 private:
+    void closeEvent(QCloseEvent* bar);
     virtual void paintEvent(QPaintEvent* event);
 
     Ui::MazeSolverClass ui;
     class SearchAlgo* alg;
     class SearchAlgo *dfs, *bfs;
+    class Console* console;
+
     int currLEN;
 };
