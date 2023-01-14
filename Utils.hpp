@@ -11,7 +11,7 @@
 #include <random>
 
 constexpr auto MENU_HEIGHT   = 25;
-constexpr auto DELTA			 = 42;
+constexpr auto DELTA	     = 42;
 constexpr auto DEFAULT_N     = 15;
 constexpr auto BLOCK_COLOR   = Qt::darkCyan;
 constexpr auto VISITED_BLOCK = Qt::cyan;
@@ -58,12 +58,6 @@ public:
 		{WALL, 0},
 		{PATH, 1},
 		{ANSW, 1}
-	};
-
-	const static inline std::map<int, int> toSleep = {
-		{20, 25},
-		{50, 15},
-		{100, 0}
 	};
 
 	static int getRandom(int l, int r) 
