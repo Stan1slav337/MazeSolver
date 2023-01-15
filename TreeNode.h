@@ -14,14 +14,14 @@ public:
 	std::shared_ptr<TreeNode> getParent() const;
 	Utils::point getCords() const;
 	int getVal() const;
+	int getDistanceFromParent() const;
 
 	static int nrNodes;
+	static std::shared_ptr<TreeNode> dummy;
 
 private:
-
 	int val;
 	Utils::point cords;
 	std::shared_ptr<TreeNode> parent;
 	std::vector<std::shared_ptr<TreeNode>> children;
 };
-
