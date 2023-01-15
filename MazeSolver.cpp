@@ -94,7 +94,6 @@ void MazeSolver::on_actionShow_Tree_triggered()
 
 void MazeSolver::on_actionShow_Details_triggered()
 {
-
     if (ui.actionShow_Details->isChecked())
         console->show();
     else
