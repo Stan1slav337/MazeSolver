@@ -9,6 +9,7 @@ MazeSolver::MazeSolver(QWidget *parent): QMainWindow(parent)
     dfs = new DFS(this);
     bfs = new BFS(this);
     alg = dfs;
+    console = new Console(this);
     init(DEFAULT_N);
 }
 
@@ -19,7 +20,14 @@ void MazeSolver::init(const int LEN)
     alg->initializeMaze(LEN);
     alg->updateTree();
     alg->init();
+    alg->printStart();
+    alg->printStructure();
     update();
+}
+
+void MazeSolver::printConsole(QString str)
+{
+    console->print(str);
 }
 
 void MazeSolver::setShowConsole(bool toShow)
@@ -82,11 +90,7 @@ void MazeSolver::on_actionShow_Details_triggered()
 {
 
     if (ui.actionShow_Details->isChecked())
-    {
-        if(nullptr == console)
-            console = new Console(this);
         console->show();
-    }
     else
         console->hide();
 }

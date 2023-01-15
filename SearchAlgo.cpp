@@ -1,8 +1,7 @@
-#include "SearchAlgo.h"
+﻿#include "SearchAlgo.h"
 
-SearchAlgo::SearchAlgo(MazeSolver* solver)
+SearchAlgo::SearchAlgo(MazeSolver* solver) : visual(solver)
 {
-	visual = solver;
 }
 
 void SearchAlgo::createBlock(std::shared_ptr<TreeNode> node, Utils::blockType type)
@@ -14,11 +13,18 @@ void SearchAlgo::createBlock(std::shared_ptr<TreeNode> node, Utils::blockType ty
 
 void SearchAlgo::createAnswer(std::shared_ptr<TreeNode> node)
 {
+	printConsole("Am găsit nodul țintă, se parcurg părinții nodului pentru a găsi calea de la start.\n\n");
+
 	while (node != nullptr)
 	{
 		createBlock(node, Utils::ANSW);
 		node = node->getParent();
 	}
+}
+
+void SearchAlgo::printConsole(QString str)
+{
+	visual->printConsole(str);
 }
 
 std::shared_ptr<TreeNode> SearchAlgo::getRoot()
@@ -29,6 +35,16 @@ std::shared_ptr<TreeNode> SearchAlgo::getRoot()
 bool SearchAlgo::isFinal(std::shared_ptr<TreeNode> node)
 {
 	return maze->end == node->getCords();
+}
+
+QString SearchAlgo::getStringFromNode(std::shared_ptr<TreeNode> node)
+{
+	if(visual->getShowTree())
+		return QString::number(node->getVal());
+
+	auto [x, y] = node->getCords();
+
+	return QString("{%1, %2}").arg(QString::number(y), QString::number(x));
 }
 
 void SearchAlgo::initializeMaze(const int LEN)

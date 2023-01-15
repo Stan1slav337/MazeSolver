@@ -12,11 +12,16 @@ public:
 protected:
 	virtual void init() = 0;
 	virtual void search() = 0;
+	virtual void printStart() = 0;
+	virtual void printStep() = 0;
+	virtual void printStructure() = 0;
 
 	void createBlock(std::shared_ptr<TreeNode>, Utils::blockType);
 	void createAnswer(std::shared_ptr<TreeNode>);
+	void printConsole(QString);
 	std::shared_ptr<TreeNode> getRoot();
 	bool isFinal(std::shared_ptr<TreeNode>);
+	QString getStringFromNode(std::shared_ptr<TreeNode>);
 
 	std::unique_ptr<class Maze> maze;
 		

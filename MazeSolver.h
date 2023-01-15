@@ -13,6 +13,7 @@ class MazeSolver : public QMainWindow
 public:
     MazeSolver(QWidget* parent = nullptr);
     void init(const int);
+    void printConsole(QString);
     void setShowConsole(bool);
     bool getShowTree() const;
 
