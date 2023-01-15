@@ -6,8 +6,14 @@ SearchAlgo::SearchAlgo(MazeSolver* solver, bool isDijkstra) : visual(solver), ha
 
 void SearchAlgo::createBlock(std::shared_ptr<TreeNode> node, Utils::blockType type)
 {
-	auto cords = node->getCords();
-	maze->addBlock(cords, type);
+	auto [x, y] = node->getCords();
+	auto [px, py] = node->getParent()->getCords();
+	auto offsetX = x == px ? 0 : x - px > 0 ? 1 : -1;
+	auto offsetY = y == py ? 0 : y - py > 0 ? 1 : -1;
+
+	for (int i = 1; i <= node->getDistanceFromParent(); ++i)
+		maze->addBlock({ px + offsetX * i, py + offsetY * i }, type);
+
 	visual->update();
 }
 
@@ -15,7 +21,7 @@ void SearchAlgo::createAnswer(std::shared_ptr<TreeNode> node)
 {
 	printConsole("Am găsit nodul țintă, se parcurg părinții nodului pentru a găsi calea de la start.\n\n");
 
-	while (node != nullptr)
+	while (node != TreeNode::dummy)
 	{
 		createBlock(node, Utils::ANSW);
 		node = node->getParent();
@@ -39,7 +45,7 @@ bool SearchAlgo::isFinal(std::shared_ptr<TreeNode> node)
 
 QString SearchAlgo::getStringFromNode(std::shared_ptr<TreeNode> node)
 {
-	if(visual->getShowTree())
+	if (visual->getShowTree())
 		return QString::number(node->getVal());
 
 	auto [x, y] = node->getCords();
@@ -56,13 +62,13 @@ void SearchAlgo::initializeMaze(const int LEN)
 			if (maze->binaryGrid[y][x])
 				maze->addBlock({ x, y }, Utils::WALL);
 
-	maze->addBlock(maze->end  , Utils::PATH);
+	maze->addBlock(maze->end, Utils::PATH);
 }
 
 void SearchAlgo::updateTree()
 {
-	TreeNode::nrNodes = 1;
-	root = makeTree(Utils::point{ 1, 1 }, nullptr);
+	TreeNode::nrNodes = 0;
+	root = makeTree(Utils::point{ 1, 1 }, TreeNode::dummy);
 }
 
 std::shared_ptr<TreeNode> SearchAlgo::makeTree(Utils::point cords, std::shared_ptr<TreeNode> parent)
@@ -77,16 +83,16 @@ std::shared_ptr<TreeNode> SearchAlgo::makeTree(Utils::point cords, std::shared_p
 		if (maze->binaryGrid[cordY + dirY][cordX + dirX] == 0)
 		{
 			auto [offsetX, offsetY] = dirCords;
-			
+
 			if (hasDistances)
 				while (maze->binaryGrid[cordY + offsetY + dirY][cordX + offsetX + dirX] == 0 &&
-					   maze->binaryGrid[cordY + offsetY + dirX][cordX + offsetX + dirY] == 1 &&
-					   maze->binaryGrid[cordY + offsetY - dirX][cordX + offsetX - dirY] == 1)
-							offsetX += dirX, offsetY += dirY;
+					maze->binaryGrid[cordY + offsetY + dirX][cordX + offsetX + dirY] == 1 &&
+					maze->binaryGrid[cordY + offsetY - dirX][cordX + offsetX - dirY] == 1)
+					offsetX += dirX, offsetY += dirY;
 
 			auto childCords = Utils::point{ cordX + offsetX, cordY + offsetY };
 
-			if (parent == nullptr || childCords != parent->getCords())
+			if (parent == TreeNode::dummy || childCords != parent->getCords())
 				node->addChild(makeTree(childCords, node));
 		}
 	}
@@ -126,11 +132,11 @@ void SearchAlgo::showTree(std::shared_ptr<TreeNode> node)
 		showTree(child);
 }
 
-void SearchAlgo::showMaze()	
+void SearchAlgo::showMaze()
 {
 	painter.begin(visual);
 
-	for (auto &block : maze->grid)
+	for (auto& block : maze->grid)
 	{
 		pen.setColor(Utils::colors.at(block.type));
 		painter.setBrush(Utils::colors.at(block.type));
@@ -140,6 +146,6 @@ void SearchAlgo::showMaze()
 
 	painter.end();
 
-	if(visual->getShowTree())
+	if (visual->getShowTree())
 		showTree(root);
 }
