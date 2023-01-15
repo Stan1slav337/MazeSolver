@@ -14,6 +14,11 @@ void Console::print(QString str)
 	ui.textEdit->moveCursor(QTextCursor::End);
 }
 
+void Console::clear()
+{
+	ui.textEdit->clear();
+}
+
 void Console::closeEvent(QCloseEvent* bar)
 {
 	main->setShowConsole(false);

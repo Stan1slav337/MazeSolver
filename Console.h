@@ -12,6 +12,7 @@ class Console : public QWidget
 public:
 	Console(class MazeSolver*, QWidget *parent = nullptr);
 	void print(QString);
+	void clear();
 
 private:
 	void closeEvent(QCloseEvent* bar);

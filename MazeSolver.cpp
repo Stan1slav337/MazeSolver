@@ -17,11 +17,15 @@ void MazeSolver::init(const int LEN)
 {
     currLEN = LEN;
     setFixedSize(QSize(DELTA * LEN, DELTA * LEN + MENU_HEIGHT));
+
     alg->initializeMaze(LEN);
     alg->updateTree();
     alg->init();
+
+    console->clear();
     alg->printStart();
     alg->printStructure();
+
     update();
 }
 
