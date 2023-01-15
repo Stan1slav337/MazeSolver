@@ -7,7 +7,7 @@
 class SearchAlgo 
 {
 public:
-	SearchAlgo(class MazeSolver*);
+	SearchAlgo(class MazeSolver*, bool = false);
 
 protected:
 	virtual void init() = 0;
@@ -35,6 +35,7 @@ private:
 	friend class MazeSolver;
 	class MazeSolver* visual;
 	std::shared_ptr<TreeNode> root;
+	bool hasDistances;
 
 	QPainter painter;
 	QPen pen;

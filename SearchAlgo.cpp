@@ -1,6 +1,6 @@
 ﻿#include "SearchAlgo.h"
 
-SearchAlgo::SearchAlgo(MazeSolver* solver) : visual(solver)
+SearchAlgo::SearchAlgo(MazeSolver* solver, bool isDijkstra) : visual(solver), hasDistances(isDijkstra)
 {
 }
 
@@ -76,7 +76,15 @@ std::shared_ptr<TreeNode> SearchAlgo::makeTree(Utils::point cords, std::shared_p
 
 		if (maze->binaryGrid[cordY + dirY][cordX + dirX] == 0)
 		{
-			auto childCords = Utils::point{ cordX + dirX, cordY + dirY };
+			auto [offsetX, offsetY] = dirCords;
+			
+			if (hasDistances)
+				while (maze->binaryGrid[cordY + offsetY + dirY][cordX + offsetX + dirX] == 0 &&
+					   maze->binaryGrid[cordY + offsetY + dirX][cordX + offsetX + dirY] == 1 &&
+					   maze->binaryGrid[cordY + offsetY - dirX][cordX + offsetX - dirY] == 1)
+							offsetX += dirX, offsetY += dirY;
+
+			auto childCords = Utils::point{ cordX + offsetX, cordY + offsetY };
 
 			if (parent == nullptr || childCords != parent->getCords())
 				node->addChild(makeTree(childCords, node));
