@@ -10,6 +10,9 @@ public:
 
 	void init();
 	void search();
+	void printStart();
+	void printStep();
+	void printStructure();
 
 private:
 	std::stack<std::shared_ptr<TreeNode>> stack;
