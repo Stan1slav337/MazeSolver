@@ -9,6 +9,9 @@ void DFS::init()
 
 void DFS::search()
 {
+	if (stack.empty())
+		return;
+
 	printStep();
 	auto currNode = stack.top();
 	stack.pop();
@@ -41,8 +44,13 @@ void DFS::printStep()
 void DFS::printStructure()
 {
 	auto printStack(stack);
-	printConsole("Stiva curentă: [" + getStringFromNode(printStack.top()));
-	printStack.pop();
+	printConsole("Stiva curentă: [");
+
+	if (!printStack.empty())
+	{
+		printConsole(getStringFromNode(printStack.top()));
+		printStack.pop();
+	}
 
 	while (!printStack.empty())
 	{

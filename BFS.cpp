@@ -8,6 +8,9 @@ void BFS::init()
 
 void BFS::search()
 {
+	if (queue.empty())
+		return;
+
 	printStep();
 	auto currNode = queue.front();
 	queue.pop();
@@ -40,8 +43,13 @@ void BFS::printStep()
 void BFS::printStructure()
 {
 	auto printQueue(queue);
-	printConsole("Coada curentă: [" + getStringFromNode(printQueue.front()));
-	printQueue.pop();
+	printConsole("Coada curentă: [");
+
+	if (!printQueue.empty())
+	{
+		printConsole(getStringFromNode(printQueue.front()));
+		printQueue.pop();
+	}
 
 	while (!printQueue.empty())
 	{
