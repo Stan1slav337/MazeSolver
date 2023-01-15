@@ -37,7 +37,7 @@ void BFS::printStart()
 
 void BFS::printStep()
 {
-	printConsole("Extragem nodul din capătul cozii: " + getStringFromNode(queue.front()) + " și introducem copii acestuia în coadă\n");
+	printConsole("Extragem nodul din începutul cozii: " + getStringFromNode(queue.front()) + " și introducem copii acestuia în coadă\n");
 }
 
 void BFS::printStructure()
