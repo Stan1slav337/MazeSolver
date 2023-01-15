@@ -32,12 +32,13 @@ void Dijkstra::printStart()
 {
 	printConsole("Algoritmul lui Dijkstra începe de la rădăcină⁠ și similar căutării în lățime adaugă nodurile vecine într-o coadă.\n");
 	printConsole("Nodurile sunt introduse păstrând o ordine crescătoarea a distanțelor dintre nod și părintele acestuia.\n");
+	printConsole("Pe lângă valoarea nodurilor din coadă, acestea mai au păstrate și o variabilă pentru distanță.\n");
 	printConsole("Inițial se adaugă nodul de start în coadă.\n");
 }
 
 void Dijkstra::printStep()
 {
-	printConsole("Extragem nodul din capătul cozii: " + getStringFromNode(priority_queue.top()) + " și introducem copii acestuia în coadă\n");
+	printConsole("Extragem nodul din începutul cozii: " + getStringFromNode(priority_queue.top()) + " și introducem copii acestuia în coadă\n");
 }
 
 void Dijkstra::printStructure()
