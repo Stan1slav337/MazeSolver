@@ -93,6 +93,7 @@
     <ClCompile Include="BFS.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="DFS.cpp" />
+    <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="GridBlock.cpp" />
     <ClCompile Include="Maze.cpp" />
     <ClCompile Include="SearchAlgo.cpp" />
@@ -108,6 +109,7 @@
     <ClInclude Include="BFS.h" />
     <QtMoc Include="Console.h" />
     <ClInclude Include="DFS.h" />
+    <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="GridBlock.h" />
     <ClInclude Include="Maze.h" />
     <ClInclude Include="SearchAlgo.h" />
