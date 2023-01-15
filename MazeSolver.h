@@ -24,6 +24,7 @@ private slots:
     void on_actionGenerate_triggered();
     void on_actionDFS_triggered();
     void on_actionBFS_triggered();
+    void on_actionDijkstra_triggered();
 
     void on_action10_triggered();
     void on_action15_triggered();
@@ -38,7 +39,7 @@ private:
 
     Ui::MazeSolverClass ui;
     class SearchAlgo* alg;
-    class SearchAlgo *dfs, *bfs;
+    class SearchAlgo* dfs, * bfs, * djk;
     class Console* console;
 
     int currLEN;

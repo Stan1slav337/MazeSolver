@@ -1,13 +1,15 @@
 #include "MazeSolver.h"
 #include "DFS.h"
 #include "BFS.h"
+#include "Dijkstra.h"
 
-MazeSolver::MazeSolver(QWidget *parent): QMainWindow(parent)
+MazeSolver::MazeSolver(QWidget* parent) : QMainWindow(parent)
 {
     ui.setupUi(this);
 
     dfs = new DFS(this);
     bfs = new BFS(this);
+    djk = new Dijkstra(this);
     alg = dfs;
     console = new Console(this);
     init(DEFAULT_N);
@@ -110,5 +112,12 @@ void MazeSolver::on_actionBFS_triggered()
 {
     setWindowTitle("Breadth First Search");
     alg = bfs;
+    init(currLEN);
+}
+
+void MazeSolver::on_actionDijkstra_triggered()
+{
+    setWindowTitle("Dijkstra");
+    alg = djk;
     init(currLEN);
 }

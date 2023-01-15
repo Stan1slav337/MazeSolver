@@ -33,7 +33,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuStart">
@@ -43,6 +43,7 @@
     <addaction name="actionGenerate"/>
     <addaction name="actionDFS"/>
     <addaction name="actionBFS"/>
+    <addaction name="actionDijkstra"/>
    </widget>
    <widget class="QMenu" name="menuMaze">
     <property name="title">
@@ -107,6 +108,11 @@
    </property>
    <property name="text">
     <string>Show Details</string>
+   </property>
+  </action>
+  <action name="actionDijkstra">
+   <property name="text">
+    <string>Dijkstra</string>
    </property>
   </action>
  </widget>
