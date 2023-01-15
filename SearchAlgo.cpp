@@ -45,10 +45,17 @@ bool SearchAlgo::isFinal(std::shared_ptr<TreeNode> node)
 
 QString SearchAlgo::getStringFromNode(std::shared_ptr<TreeNode> node)
 {
+	auto [x, y] = node->getCords();
+
+	if (hasDistances)
+	{
+		if (visual->getShowTree())
+			return QString("{%1, %2}").arg(QString::number(node->getVal()), QString::number(node->getDistanceFromParent()));
+		return QString("{%1, %2, %3}").arg(QString::number(y), QString::number(x), QString::number(node->getParent() == TreeNode::dummy ? 0 : node->getDistanceFromParent()));
+	}
+
 	if (visual->getShowTree())
 		return QString::number(node->getVal());
-
-	auto [x, y] = node->getCords();
 
 	return QString("{%1, %2}").arg(QString::number(y), QString::number(x));
 }
