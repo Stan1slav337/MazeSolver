@@ -6,10 +6,10 @@ void BFS::init()
 	queue.push(getRoot());
 }
 
-void BFS::search()
+bool BFS::search()
 {
 	if (queue.empty())
-		return;
+		return false;
 
 	printStep();
 	auto currNode = queue.front();
@@ -19,13 +19,15 @@ void BFS::search()
 	if (isFinal(currNode))
 	{
 		createAnswer(currNode);
-		return;
+		return true;
 	}
 
 	for (auto childNode : currNode->getChildren())
 		queue.push(childNode);
 
 	printStructure();
+
+	return true;
 }
 
 void BFS::printStart()

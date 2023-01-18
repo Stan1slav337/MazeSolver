@@ -9,7 +9,7 @@ public:
 	Dijkstra(class MazeSolver* solver) : SearchAlgo(solver, true) {}
 
 	void init();
-	void search();
+	bool search();
 	void printStart();
 	void printStep();
 	void printStructure();

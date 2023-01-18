@@ -1,11 +1,7 @@
 #pragma once
 
 #include <QPainter>
-#include <qmutex.h>
-#include <qwaitcondition.h>
-#include <vector>
 #include <map>
-#include <set>
 #include <queue>
 #include <chrono>
 #include <random>

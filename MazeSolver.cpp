@@ -62,8 +62,10 @@ void MazeSolver::keyPressEvent(QKeyEvent* event)
 {
     if (event->key() == Qt::Key_Right)
     {
-        alg->search();
-        update();
+        if (alg->search())
+            update();
+        else
+            alg->finalizeAlgo();
     }
 }
 

@@ -7,10 +7,10 @@ void DFS::init()
 	stack.push(getRoot());
 }
 
-void DFS::search()
+bool DFS::search()
 {
 	if (stack.empty())
-		return;
+		return false;
 
 	printStep();
 	auto currNode = stack.top();
@@ -20,13 +20,15 @@ void DFS::search()
 	if (isFinal(currNode))
 	{
 		createAnswer(currNode);
-		return;
+		return true;
 	}
 
 	for (auto childNode : currNode->getChildren() | std::views::reverse)
 		stack.push(childNode);
 
 	printStructure();
+
+	return true;
 }
 
 void DFS::printStart()

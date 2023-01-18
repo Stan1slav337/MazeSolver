@@ -9,10 +9,11 @@ class SearchAlgo
 {
 public:
 	SearchAlgo(class MazeSolver*, bool = false);
+	void finalizeAlgo();
 
 protected:
 	virtual void init() = 0;
-	virtual void search() = 0;
+	virtual bool search() = 0;
 	virtual void printStart() = 0;
 	virtual void printStep() = 0;
 	virtual void printStructure() = 0;

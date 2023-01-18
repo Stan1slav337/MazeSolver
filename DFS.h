@@ -9,7 +9,7 @@ public:
 	DFS(class MazeSolver* solver) : SearchAlgo(solver) {}
 
 	void init();
-	void search();
+	bool search();
 	void printStart();
 	void printStep();
 	void printStructure();

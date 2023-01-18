@@ -1,7 +1,16 @@
 ﻿#include "SearchAlgo.h"
 
-SearchAlgo::SearchAlgo(MazeSolver* solver, bool isDijkstra) : visual(solver), hasDistances(isDijkstra)
+SearchAlgo::SearchAlgo(MazeSolver* solver, bool isDijkstra) : visual(solver), hasDistances(isDijkstra), endIdx(1)
 {
+}
+
+void SearchAlgo::finalizeAlgo()
+{
+	if (maze->grid.back() != GridBlock::dummy)
+	{
+		maze->grid.push_back(GridBlock::dummy);
+		visual->update();
+	}
 }
 
 void SearchAlgo::createBlock(std::shared_ptr<TreeNode> node, Utils::blockType type)

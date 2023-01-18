@@ -6,10 +6,10 @@ void Dijkstra::init()
 	priority_queue.push(getRoot());
 }
 
-void Dijkstra::search()
+bool Dijkstra::search()
 {
 	if (priority_queue.empty())
-		return;
+		return false;
 
 	printStep();
 	auto currNode = priority_queue.top();
@@ -19,13 +19,15 @@ void Dijkstra::search()
 	if (isFinal(currNode))
 	{
 		createAnswer(currNode);
-		return;
+		return true;
 	}
 
 	for (auto childNode : currNode->getChildren())
 		priority_queue.push(childNode);
 
 	printStructure();
+
+	return true;
 }
 
 void Dijkstra::printStart()
