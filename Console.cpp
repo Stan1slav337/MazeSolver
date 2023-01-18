@@ -4,6 +4,10 @@ Console::Console(class MazeSolver *solver, QWidget *parent): main(solver), QWidg
 {
 	ui.setupUi(this);
 
+	QFont f = ui.textEdit->font();
+	f.setPointSizeF(16);
+	ui.textEdit->setFont(f);
+
 	setFixedSize(size());
 }
 
