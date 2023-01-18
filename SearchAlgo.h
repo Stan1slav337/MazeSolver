@@ -3,6 +3,7 @@
 #include "MazeSolver.h"
 #include "Maze.h"
 #include "TreeNode.h"
+#include "GridBlock.h"
 
 class SearchAlgo 
 {
@@ -30,12 +31,14 @@ private:
 	void updateTree();
 	std::shared_ptr<TreeNode> makeTree(Utils::point, std::shared_ptr<TreeNode>);
 	void showTree(std::shared_ptr<TreeNode>);
+	const QColor getBlockColor(GridBlock&) const;
 	void showMaze();
 
 	friend class MazeSolver;
 	class MazeSolver* visual;
 	std::shared_ptr<TreeNode> root;
 	bool hasDistances;
+	int endIdx;
 
 	QPainter painter;
 	QPen pen;

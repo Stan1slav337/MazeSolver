@@ -70,6 +70,7 @@ void SearchAlgo::initializeMaze(const int LEN)
 				maze->addBlock({ x, y }, Utils::WALL);
 
 	maze->addBlock(maze->end, Utils::PATH);
+	endIdx = maze->grid.size();
 }
 
 void SearchAlgo::updateTree()
@@ -139,14 +140,23 @@ void SearchAlgo::showTree(std::shared_ptr<TreeNode> node)
 		showTree(child);
 }
 
+const QColor SearchAlgo::getBlockColor(GridBlock& block) const
+{
+	if (Utils::PATH == block.type && (block == maze->grid.back() || block == maze->grid[endIdx - 1]))
+		return ACTIVE_BLOCK;
+
+	return Utils::colors.at(block.type);
+}
+
 void SearchAlgo::showMaze()
 {
 	painter.begin(visual);
 
 	for (auto& block : maze->grid)
 	{
-		pen.setColor(Utils::colors.at(block.type));
-		painter.setBrush(Utils::colors.at(block.type));
+		auto color = getBlockColor(block);
+		pen.setColor(color);
+		painter.setBrush(color);
 		painter.setPen(pen);
 		painter.drawRect(block);
 	}
